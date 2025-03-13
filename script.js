@@ -75,7 +75,6 @@ function toggleTodo(id) {
         if (todo.id === id) {
             return {
                 ...todo,
-                completed: !todo.completed
             };
         }
         return todo;
