@@ -71,15 +71,15 @@ function renderTodos() {
 }
 
 function toggleTodo(id) {
-    // todos = todos.map(todo => {
-    //     if (todo.id === id) {
-    //         return {
-    //             ...todo,
-    //             completed: !todo.completed
-    //         };
-    //     }
-    //     return todo;
-    // });
+    todos = todos.map(todo => {
+        if (todo.id === id) {
+            return {
+                ...todo,
+                completed: !todo.completed
+            };
+        }
+        return todo;
+    });
     
     saveTodos();
     renderTodos();
