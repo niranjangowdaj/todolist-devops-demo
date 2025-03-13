@@ -1,17 +1,13 @@
-// DOM elements
 const todoInput = document.getElementById('todoInput');
 const addBtn = document.getElementById('addBtn');
 const todoList = document.getElementById('todoList');
 const taskStats = document.getElementById('taskStats');
 
-// Todo array
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-// Initialize
 renderTodos();
 updateStats();
 
-// Event listeners
 addBtn.addEventListener('click', addTodo);
 todoInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
@@ -19,7 +15,6 @@ todoInput.addEventListener('keypress', function(e) {
     }
 });
 
-// Add todo function
 function addTodo() {
     const todoText = todoInput.value.trim();
     
@@ -35,13 +30,11 @@ function addTodo() {
         renderTodos();
         updateStats();
         
-        // Clear input
         todoInput.value = '';
         todoInput.focus();
     }
 }
 
-// Render todos function
 function renderTodos() {
     todoList.innerHTML = '';
     
@@ -77,24 +70,22 @@ function renderTodos() {
     });
 }
 
-// Toggle todo function
 function toggleTodo(id) {
-    todos = todos.map(todo => {
-        if (todo.id === id) {
-            return {
-                ...todo,
-                completed: !todo.completed
-            };
-        }
-        return todo;
-    });
+    // todos = todos.map(todo => {
+    //     if (todo.id === id) {
+    //         return {
+    //             ...todo,
+    //             completed: !todo.completed
+    //         };
+    //     }
+    //     return todo;
+    // });
     
     saveTodos();
     renderTodos();
     updateStats();
 }
 
-// Delete todo function
 function deleteTodo(id) {
     todos = todos.filter(todo => todo.id !== id);
     
@@ -103,7 +94,6 @@ function deleteTodo(id) {
     updateStats();
 }
 
-// Update stats function
 function updateStats() {
     const totalTasks = todos.length;
     const completedTasks = todos.filter(todo => todo.completed).length;
@@ -111,7 +101,6 @@ function updateStats() {
     taskStats.textContent = `Total tasks: ${totalTasks} | Completed: ${completedTasks}`;
 }
 
-// Save todos to localStorage
 function saveTodos() {
     localStorage.setItem('todos', JSON.stringify(todos));
 }
