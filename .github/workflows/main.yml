@@ -10,10 +10,6 @@ on:
 jobs:
   cypress-run:
       runs-on: ubuntu-latest
-      strategy:
-        fail-fast: false
-        matrix:
-          containers: [1]
       if: ${{ github.event.workflow_run.conclusion == 'success' }} 
       steps:
         - name: Checkout
